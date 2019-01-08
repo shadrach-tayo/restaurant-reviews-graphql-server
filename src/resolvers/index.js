@@ -64,9 +64,9 @@ export default {
     },
 
     getRestaurant: async (parent, { id }, { Restaurant }) => {
-      const restaurant = Restaurant.findById(id);
+      const restaurant = await Restaurant.find({ id });
 
-      return restaurant;
+      return restaurant[0];
     },
 
     getReviews: async (parent, args, { Review }) => {
@@ -79,8 +79,8 @@ export default {
     },
 
     getReview: async (parent, { id }, { Review }) => {
-      const review = Review.findById(id);
-      return review;
+      const review = await Review.find({ id });
+      return review[0];
     }
   },
 

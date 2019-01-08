@@ -3,7 +3,7 @@ import { gql } from "apollo-server-express";
 export default gql`
   extend type Query {
     getReviews: [Review!]
-    getReview(id: String!): Review
+    getReview(id: Int!): Review
   }
 
   extend type Mutation {
@@ -18,22 +18,21 @@ export default gql`
   }
 
   type Review {
-    id: Int
-    rating: Int
-    name: String
+    id: Int!
+    rating: Int!
+    name: String!
     _id: ObjectID
     createdAt: Date
     updatedAt: Date
     comments: String
-    restaurant_id: Int
+    restaurant_id: Int!
   }
 
   input ReviewInput {
-    id: Int
-    rating: Int
-    name: String
-    updatedAt: Date
-    comments: String
-    restaurant_id: Int
+    id: Int!
+    rating: Int!
+    name: String!
+    comments: String!
+    restaurant_id: Int!
   }
 `;
