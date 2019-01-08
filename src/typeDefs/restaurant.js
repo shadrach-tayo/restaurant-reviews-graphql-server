@@ -1,9 +1,6 @@
 import { gql } from "apollo-server-express";
 
 export default gql`
-  scalar Date
-  scalar ObjectID
-
   extend type Query {
     getRestaurants: [Restaurant!]!
     getRestaurant(id: Int!): Restaurant
@@ -20,8 +17,8 @@ export default gql`
   }
 
   type Restaurant {
-    _id: ObjectID
     id: Int
+    _id: ObjectID
     name: String
     neighborhood: String
     address: String

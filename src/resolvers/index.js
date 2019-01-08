@@ -99,10 +99,11 @@ export default {
 
     createReview: async (
       parent,
-      { name, rating, restaurant_id, comments },
+      { id, name, rating, restaurant_id, comments },
       { Review }
     ) => {
       let review = await new Review({
+        id,
         name,
         rating,
         restaurant_id,
@@ -115,6 +116,16 @@ export default {
       const promise = await Promise.all(
         reviews.map(review => new Review(review).save())
       );
+      return promise;
+    },
+
+    updateReview: async (_, { update }, { Review }) => {
+      let review = await Review.find({ id: update.id });
+      review = review[0];
+      await review.set(update);
+      const promise = review.save().then(updatedReview => {
+        return updatedReview;
+      });
       return promise;
     }
   }

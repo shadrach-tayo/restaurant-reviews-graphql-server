@@ -8,6 +8,7 @@ export default gql`
 
   extend type Mutation {
     createReview(
+      id: Int!
       restaurant_id: Int!
       name: String!
       rating: Int!
@@ -15,6 +16,8 @@ export default gql`
     ): Review
 
     createReviews(reviews: [ReviewInput]): [Review]
+
+    updateReview(update: UpdateReviewInput): Review
   }
 
   type Review {
@@ -34,5 +37,12 @@ export default gql`
     name: String!
     comments: String!
     restaurant_id: Int!
+  }
+
+  input UpdateReviewInput {
+    id: Int!
+    rating: Int
+    name: String
+    comments: String
   }
 `;

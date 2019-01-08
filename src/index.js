@@ -13,8 +13,6 @@ mongoose.connect(
   `mongodb://${DB_USER}:${DB_PASS}@ds245755.mlab.com:45755/restaurant-reviews`
 );
 
-// mongoose.connection.on('')
-
 const IN_PROD = NODE_ENV === "production";
 
 const app = express();
