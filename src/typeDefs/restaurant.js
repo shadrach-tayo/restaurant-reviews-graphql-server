@@ -2,7 +2,8 @@ import { gql } from "apollo-server-express";
 
 export default gql`
   extend type Query {
-    getRestaurants: [Restaurant!]!
+    getRestaurants(cuisine_type: String, neighborhood: String): [Restaurant!]!
+    getAllRestaurants: [Restaurant!]!
     getRestaurant(id: Int!): Restaurant
   }
 
@@ -14,6 +15,7 @@ export default gql`
       latlng: LocationInput
     ): Restaurant
     createRestaurants(restaurants: [RestaurantInput]): [Restaurant]
+    setFavorite(id: Int!, is_favorite: Boolean!): Restaurant
   }
 
   type Restaurant {

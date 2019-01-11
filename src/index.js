@@ -21,6 +21,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   playground: !IN_PROD,
+  debug: !IN_PROD,
   context: { Restaurant, Review }
 });
 

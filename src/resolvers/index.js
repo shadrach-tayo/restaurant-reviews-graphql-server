@@ -54,19 +54,30 @@ export default {
   }),
 
   Query: {
-    getRestaurants: async (parent, args, { Restaurant }) => {
-      let restaurants = await Restaurant.find();
-      restaurants = restaurants.map(restaurant => ({
-        _id: restaurant._id.toString(),
-        ...restaurant
-      }));
+    getRestaurants: async (
+      parent,
+      { cusine_type, neighborhood },
+      { Restaurant }
+    ) => {
+      let restaurants;
+      if (cusine_type === "all" && neighborhood !== "all") {
+        restaurants = await Restaurant.find({ neighborhood });
+      } else if (cusine_type !== "all" && neighborhood === "all") {
+        restaurants = await Restaurant.find({ cusine_type });
+      } else {
+        restaurants = await Restaurant.find({ cusine_type, neighborhood });
+      }
+      return restaurants;
+    },
+
+    getAllRestaurants: async (parent, args, { Restaurant }) => {
+      const restaurants = await Restaurant.find();
       return restaurants;
     },
 
     getRestaurant: async (parent, { id }, { Restaurant }) => {
-      const restaurant = await Restaurant.find({ id });
-
-      return restaurant[0];
+      const restaurant = await Restaurant.findOne({ id });
+      return restaurant;
     },
 
     getReviews: async (parent, args, { Review }) => {
@@ -79,8 +90,8 @@ export default {
     },
 
     getReview: async (parent, { id }, { Review }) => {
-      const review = await Review.find({ id });
-      return review[0];
+      const review = await Review.findOne({ id });
+      return review;
     }
   },
 
@@ -94,6 +105,16 @@ export default {
       const promise = await Promise.all(
         restaurants.map(restaurant => new Restaurant(restaurant).save())
       );
+      return promise;
+    },
+
+    setFavorite: async (_, { id, is_favorite }, { Restaurant }) => {
+      let restaurant = await Restaurant.find({ id });
+      restaurant = restaurant[0];
+      await restaurant.set({ is_favorite });
+      const promise = restaurant
+        .save()
+        .then(updatedRestaurant => updatedRestaurant);
       return promise;
     },
 

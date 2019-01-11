@@ -22,12 +22,12 @@ export default gql`
 
   type Review {
     id: Int!
-    rating: Int!
+    rating: Int
     name: String!
     _id: ObjectID
     createdAt: Date
     updatedAt: Date
-    comments: String
+    comments: String!
     restaurant_id: Int!
   }
 
