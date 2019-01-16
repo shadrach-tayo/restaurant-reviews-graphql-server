@@ -2,8 +2,8 @@ import { gql } from "apollo-server-express";
 
 export default gql`
   extend type Query {
-    getReviews: [Review!]
-    getReview(id: Int!): Review
+    getAllReviews: [Review!]!
+    getReviews(restaurant_id: Int!): [Review!]!
   }
 
   extend type Mutation {

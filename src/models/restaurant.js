@@ -20,7 +20,8 @@ const restaurantSchema = new mongoose.Schema(
       Saturday: String,
       Sunday: String
     },
-    is_favorite: Boolean
+    is_favorite: Boolean,
+    photograph: String
   },
   {
     timestamps: true

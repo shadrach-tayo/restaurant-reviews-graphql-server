@@ -80,7 +80,7 @@ export default {
       return restaurant;
     },
 
-    getReviews: async (parent, args, { Review }) => {
+    getAllReviews: async (parent, args, { Review }) => {
       let reviews = await Review.find();
       reviews = reviews.map(review => {
         review._id = review._id.toString();
@@ -89,8 +89,8 @@ export default {
       return reviews;
     },
 
-    getReview: async (parent, { id }, { Review }) => {
-      const review = await Review.findOne({ id });
+    getReviews: async (parent, { restaurant_id }, { Review }) => {
+      const review = await Review.find({ restaurant_id });
       return review;
     }
   },
