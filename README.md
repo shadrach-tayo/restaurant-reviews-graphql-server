@@ -26,5 +26,5 @@ After learning how to use GraphQL in both backend and frontend use cases and bui
 To get this server running locally in your terminal:
 
 - `git clone https://github.com/shadrach-tayo/restaurant-reviews-graphql-server.git` to clone the repo.
-- `npm i` to get the depencies.
+- `npm i` to get the dependencies.
 - `npm run dev` to run the dev server
