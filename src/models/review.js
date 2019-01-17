@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
+const AutoIncrement = require("mongoose-sequence")(mongoose);
 
 const reviewSchema = new mongoose.Schema(
   {
     name: String,
-    id: Number,
     comments: String,
     rating: Number,
     restaurant_id: Number
@@ -12,6 +12,8 @@ const reviewSchema = new mongoose.Schema(
     timestamps: true
   }
 );
+
+reviewSchema.plugin(AutoIncrement, { inc_field: "id" });
 
 const Review = mongoose.model("Review", reviewSchema);
 

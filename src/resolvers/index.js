@@ -114,7 +114,8 @@ export default {
       await restaurant.set({ is_favorite });
       const promise = restaurant
         .save()
-        .then(updatedRestaurant => updatedRestaurant);
+        .then(updatedRestaurant => updatedRestaurant)
+        .catch(err => console.log(err))
       return promise;
     },
 

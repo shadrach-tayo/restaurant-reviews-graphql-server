@@ -8,14 +8,13 @@ export default gql`
 
   extend type Mutation {
     createReview(
-      id: Int!
       restaurant_id: Int!
       name: String!
       rating: Int!
       comments: String!
     ): Review
 
-    createReviews(reviews: [ReviewInput]): [Review]
+    createReviews(reviews: [ReviewInput!]!): [Review!]!
 
     updateReview(update: UpdateReviewInput): Review
   }
@@ -32,7 +31,6 @@ export default gql`
   }
 
   input ReviewInput {
-    id: Int!
     rating: Int!
     name: String!
     comments: String!
