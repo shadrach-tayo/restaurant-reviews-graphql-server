@@ -1,0 +1,5 @@
+runtime: nodejs10
+
+env_variables:
+    DB_USER: "shadrach"
+    DB_PASS: "shadrach1999"
