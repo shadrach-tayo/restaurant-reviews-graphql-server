@@ -6,7 +6,12 @@
   "scripts": {
     "start": "node -r esm .",
     "dev": "  nodemon -r esm",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "client:start": "live-server --open=dist --prefix client",
+    "build": "rm -rf client/dist && npm run copy-assets",
+    "copy-assets": "npm run static && npm run javascript",
+    "static": "cp -r client/src/static client/dist && cp -r client/src/public/* client/dist",
+    "javascript": "npx rollup -c && npm run idb",
+    "idb": "cp -r client/src/js/idb.js client/dist/js"
   },
   "keywords": [],
   "author": "Shadrach Temitayo <shadrachtemitayo@gmail.com>",
@@ -19,7 +24,10 @@
     "express": "^4.16.4",
     "graphql": "^14.0.2",
     "graphql-tools": "^4.0.3",
+    "idb": "^2.1.3",
     "mongoose": "^5.4.2",
-    "mongoose-sequence": "^4.0.1"
+    "mongoose-sequence": "^4.0.1",
+    "rollup": "^1.1.0",
+    "rollup-plugin-replace": "^2.1.0"
   }
 }
