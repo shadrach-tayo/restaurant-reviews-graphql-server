@@ -1,0 +1,5 @@
+#dependencies
+/node_modules
+/src
+/.vscode
+/debug.log

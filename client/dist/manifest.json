@@ -1,0 +1,27 @@
+{
+  "name": "Restaurant Review",
+  "short_name": "R-Review",
+  "theme_color": "#A80000",
+  "background_color": "#A80000",
+  "display": "standalone",
+  "start_url": "/",
+  "description": "A simple web app for restaurant reviews",
+  "icons": [
+    {
+      "src": "./img/restaurant-icons_192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "./img/restaurant-icons_256x256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "./img/restaurant-icons_512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "scope": "/"
+}
