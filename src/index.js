@@ -8,9 +8,7 @@ import typeDefs from "./typeDefs";
 import Restaurant from "./models/restaurant";
 import Review from "./models/review";
 
-const { port = 3000, NODE_ENV = "development", DB_PASS, DB_USER } = process.env;
-
-console.log(DB_PASS, DB_USER);
+const { PORT = 3000, NODE_ENV = "development", DB_PASS, DB_USER } = process.env;
 
 mongoose.connect(
   `mongodb://${DB_USER}:${DB_PASS}@ds245755.mlab.com:45755/restaurant-reviews`,
@@ -36,8 +34,8 @@ const server = new ApolloServer({
 
 server.applyMiddleware({ app });
 
-app.listen({ port }, () =>
+app.listen({ PORT }, () =>
   console.log(
-    `🚀 Server ready at http://localhost:${port}${server.graphqlPath}`
+    `🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`
   )
 );
