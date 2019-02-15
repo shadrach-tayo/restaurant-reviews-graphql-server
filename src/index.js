@@ -10,8 +10,15 @@ import Review from "./models/review";
 
 const { port = 3000, NODE_ENV = "development", DB_PASS, DB_USER } = process.env;
 
+console.log(DB_PASS, DB_USER);
+
 mongoose.connect(
-  `mongodb://${DB_USER}:${DB_PASS}@ds245755.mlab.com:45755/restaurant-reviews`
+  `mongodb://${DB_USER}:${DB_PASS}@ds245755.mlab.com:45755/restaurant-reviews`,
+  err => {
+    if (err) {
+      console.log(error);
+    }
+  }
 );
 
 const IN_PROD = NODE_ENV === "production";
