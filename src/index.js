@@ -14,7 +14,7 @@ mongoose.connect(
   `mongodb://${DB_USER}:${DB_PASS}@ds245755.mlab.com:45755/restaurant-reviews`,
   err => {
     if (err) {
-      console.log(error);
+      console.log(err);
     }
   }
 );
@@ -34,7 +34,7 @@ const server = new ApolloServer({
 
 server.applyMiddleware({ app });
 
-app.listen({ PORT }, () =>
+app.listen(PORT, () =>
   console.log(
     `🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`
   )
