@@ -21,7 +21,7 @@ class GraphQLClient {
       }
     );
 
-    const f = fetch(`${window.location.origin}/graphql`, objParam)
+    const f = fetch(this.url, objParam)
       .then(res => res.json())
       .then(res => {
         if (!res.error && res.data) {
@@ -214,7 +214,7 @@ class RestaurantFetch {
     });
   }
 }
-RestaurantFetch.client = new GraphQLClient(`http://localhost:{{4000}}/graphql`);
+RestaurantFetch.client = new GraphQLClient(`${window.location.origin}/graphql`);
 
 class FavoriteBtn {
   constructor(el, restaurant) {
@@ -272,14 +272,24 @@ class Notifier {
     this.trackNum = 0;
   }
 
-  show(message, options = { classname: "success" }, timeout) {
-    let id = this.trackNum++;
-    let notification = document.createElement("div");
+  show(message, { classname } = { classname: "success" }, timeout) {
+    const id = this.trackNum++;
+    const notification = document.createElement("div");
     notification.setAttribute("id", id);
-    notification.classList.add("notification", options.classname);
-    let span = document.createElement("span");
-    span.textContent = message;
-    notification.appendChild(span);
+    notification.classList.add("notification", classname);
+    const notificationImage = document.createElement("img");
+    notificationImage.src = `../img/network${classname}.svg`;
+    notificationImage.alt =
+      classname == "success"
+        ? "Network connection is restored"
+        : "No network connection";
+    notificationImage.classList.add("notification--image");
+    const imageContainer = document.createElement("div");
+    imageContainer.appendChild(notificationImage);
+    const p = document.createElement("p");
+    p.textContent = message;
+    notification.appendChild(imageContainer);
+    notification.appendChild(p);
     if (!timeout) {
       let dismissBtn = document.createElement("button");
       dismissBtn.textContent = "dismiss";
@@ -293,7 +303,7 @@ class Notifier {
       notification.appendChild(dismissBtn);
     } else {
       setTimeout(() => {
-        this.removeNotification(id);
+        // this.removeNotification(id);
       }, timeout);
     }
     this.notifications.push(notification);

@@ -919,10 +919,20 @@ label {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   background: #222222;
   color: #ffffff;
-  font-size: 1rem;
+}
+
+.notification > p {
+  font-size: 1.3rem;
+  color: #aaa;
+  margin: 0;
+}
+
+.notification--image {
+  width: 100%;
+  max-width: 30px;
 }
 
 .notification > button {
@@ -931,12 +941,4 @@ label {
   border: none;
   font-size: 1rem;
   cursor: pointer;
-}
-
-.error > button {
-  color: #970404;
-}
-
-.success > button {
-  color: #014d01;
 }

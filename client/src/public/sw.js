@@ -10,6 +10,8 @@ const filesToCache = [
   "./js/idb.js",
   "./img/placeholder.jpg",
   "./img/neighbourhood.svg",
+  "./img/networkerror.svg",
+  "./img/networksuccess.svg",
   "./img/cuisine.svg",
   "./img/restaurant-icons_192x192.png",
   "./img/restaurant-icons_256x256.png",

@@ -181,4 +181,4 @@ export default class RestaurantFetch {
 }
 
 const port = 4000;
-RestaurantFetch.client = new GraphQLClient(`http://localhost:{{PORT}}/graphql`);
+RestaurantFetch.client = new GraphQLClient(`${window.location.origin}/graphql`);
