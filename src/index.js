@@ -8,18 +8,28 @@ import typeDefs from "./typeDefs";
 import Restaurant from "./models/restaurant";
 import Review from "./models/review";
 
-const { PORT = 3000, NODE_ENV = "development", DB_PASS, DB_USER } = process.env;
-
-mongoose.connect(
-  `mongodb://${DB_USER}:${DB_PASS}@ds245755.mlab.com:45755/restaurant-reviews`,
-  err => {
-    if (err) {
-      console.log(err);
-    }
-  }
-);
-
+const { PORT = 4000, NODE_ENV = "development", DB_PASS, DB_USER } = process.env;
 const IN_PROD = NODE_ENV === "production";
+
+if (IN_PROD) {
+  mongoose.connect(
+    `mongodb://${DB_USER}:${DB_PASS}@ds245755.mlab.com:45755/restaurant-reviews`,
+    err => {
+      if (err) {
+        console.log(err);
+      }
+    }
+  );
+} else {
+  mongoose.connect(
+    `mongodb://${DB_USER}:${DB_PASS}@ds341825.mlab.com:41825/restaurant-reviews-dev`,
+    err => {
+      if (err) {
+        console.log(err);
+      }
+    }
+  );
+}
 
 const app = express();
 
