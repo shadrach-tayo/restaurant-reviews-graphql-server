@@ -1,16 +1,19 @@
 import express from "express";
 import mongoose from "mongoose";
 import path from "path";
-require("dotenv").config();
+// require("dotenv").config();
+import dotenv from "dotenv";
 const { ApolloServer } = require("apollo-server-express");
 import resolvers from "./resolvers";
 import typeDefs from "./typeDefs";
 import Restaurant from "./models/restaurant";
 import Review from "./models/review";
 
+dotenv.config();
+
 const { PORT = 4000, NODE_ENV = "development", DB_PASS, DB_USER } = process.env;
 const IN_PROD = NODE_ENV === "production";
-
+console.log(DB_USER, DB_PASS, NODE_ENV);
 if (IN_PROD) {
   mongoose.connect(
     `mongodb://${DB_USER}:${DB_PASS}@ds245755.mlab.com:45755/restaurant-reviews`,
@@ -49,3 +52,5 @@ app.listen(PORT, () =>
     `🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`
   )
 );
+
+module.exports = app;

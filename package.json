@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node -r esm .",
+    "start": "NODE_ENV=production node -r esm .",
     "dev": "  nodemon -r esm",
     "client:start": "live-server --open=client/dist",
     "build": "rm -rf client/dist && npm run copy-assets",
@@ -20,6 +20,7 @@
     "apollo-server-express": "^2.3.1",
     "body-parser": "^1.18.3",
     "dotenv": "^6.2.0",
+    "dotenv-webpack": "^1.7.0",
     "esm": "^3.0.84",
     "express": "^4.16.4",
     "graphql": "^14.0.2",

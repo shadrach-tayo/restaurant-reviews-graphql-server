@@ -303,7 +303,7 @@ class Notifier {
       notification.appendChild(dismissBtn);
     } else {
       setTimeout(() => {
-        // this.removeNotification(id);
+        this.removeNotification(id);
       }, timeout);
     }
     this.notifications.push(notification);
